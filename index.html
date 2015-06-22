@@ -48,8 +48,8 @@
 
       <div class="starter-template" data-ng-controller="CardsArchiveController">
         <h1>Cards Archive</h1>
-        <ul>
-          <li ng-repeat="x in cards">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="x in cards">
             {{ x.name + '(' + x.id + ')' }}
           </li>
         </ul>
