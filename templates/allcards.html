@@ -1,0 +1,9 @@
+<div class="starter-template">
+	<h1>All Cards</h1>
+	{{message}}
+	<ul class="list-group">
+	  <li class="list-group-item" ng-repeat="x in cards">
+	    {{ x.name + '(' + x.id + ')' }}
+	  </li>
+	</ul>
+</div>

@@ -1,6 +1,11 @@
 /**
+<<<<<<< HEAD
  * @license AngularJS v1.4.1
  * (c) 2010-2015 Google, Inc. http://angularjs.org
+=======
+ * @license AngularJS v1.3.16
+ * (c) 2010-2014 Google, Inc. http://angularjs.org
+>>>>>>> origin/master
  * License: MIT
  */
 (function(window, angular, undefined) {'use strict';
@@ -78,8 +83,13 @@ function $RouteProvider() {
    *    - `controller` – `{(string|function()=}` – Controller fn that should be associated with
    *      newly created scope or the name of a {@link angular.Module#controller registered
    *      controller} if passed as a string.
+<<<<<<< HEAD
    *    - `controllerAs` – `{string=}` – An identifier name for a reference to the controller.
    *      If present, the controller will be published to scope under the `controllerAs` name.
+=======
+   *    - `controllerAs` – `{string=}` – A controller alias name. If present the controller will be
+   *      published to scope under the `controllerAs` name.
+>>>>>>> origin/master
    *    - `template` – `{string=|function()=}` – html template as a string or a function that
    *      returns an html template as a string which should be used by {@link
    *      ngRoute.directive:ngView ngView} or {@link ng.directive:ngInclude ngInclude} directives.
@@ -608,8 +618,13 @@ function $RouteProvider() {
               return $q.all(locals);
             }
           }).
+<<<<<<< HEAD
           then(function(locals) {
             // after route change
+=======
+          // after route change
+          then(function(locals) {
+>>>>>>> origin/master
             if (nextRoute == $route.current) {
               if (nextRoute) {
                 nextRoute.locals = locals;
