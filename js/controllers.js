@@ -31,16 +31,19 @@ WBA.CardRepo = function(isMock) {
   WBA.CardRepo.prototype.getAllCards = function() {
     if(this.isMock) {
       return [
-          { id:'r01', name:'Red 1', imagelink:"assets/card_back1.jpg" },
-          { id:'r02', name:'Red 2', imagelink:"assets/card_back1.jpg" },
-          { id:'r03', name:'Red 3', imagelink:"assets/card_back1.jpg" },
-          { id:'r04', name:'Red 4', imagelink:"assets/card_back1.jpg" },
-          { id:'r05', name:'Red 5', imagelink:"assets/card_back1.jpg" },
-          { id:'r06', name:'Red 6', imagelink:"assets/card_back1.jpg" },
-          { id:'r07', name:'Red 7', imagelink:"assets/card_back1.jpg" },
-          { id:'r08', name:'Red 8', imagelink:"assets/card_back1.jpg" },
-          { id:'w01', name:'Wizard 1', imagelink:"assets/card_back1.jpg" },
-          { id:'g01', name:'Goop 1', imagelink:"assets/card_back1.jpg" }
+          { id:'r01', name:'Red 1', imageClass:"cardback" },
+          { id:'r02', name:'Red 2', imageClass:"cardback" },
+          { id:'r03', name:'Red 3', imageClass:"cardback" },
+          { id:'r04', name:'Red 4', imageClass:"cardback" },
+          { id:'r05', name:'Red 5', imageClass:"cardback" },
+          { id:'r06', name:'Red 6', imageClass:"cardback" },
+          { id:'r07', name:'Red 7', imageClass:"cardback" },
+          { id:'r08', name:'Red 8', imageClass:"cardback" },
+          { id:'w01', name:'Red Wiz', imageClass:"wizard-red" },
+          { id:'w02', name:'Blue Wiz', imageClass:"wizard-blue" },
+          { id:'w03', name:'Green Wiz', imageClass:"wizard-green" },
+          { id:'w04', name:'Yellow Wiz', imageClass:"wizard-yellow" },
+          { id:'g01', name:'Red Goop', imageClass:"cardback" }
       ];
     }
     

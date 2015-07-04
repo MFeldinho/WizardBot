@@ -5,3 +5,43 @@ body {
 .starter-template {
   padding: 40px 15px;
 }
+
+/* Card Classes */
+
+.card_subheading {
+  width: 149px;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.cardback, .wizard-red, .wizard-blue, .wizard-green, .wizard-yellow {
+  width: 149px;
+  height: 232px;
+  margin: 5px;
+  background-repeat: no-repeat;
+}
+
+.cardback {
+  background-image: url('../assets/card_back.jpg');
+  background-size: cover;
+}
+
+.wizard-red, .wizard-blue, .wizard-green, .wizard-yellow  {
+  background-image: url('../assets/cards_wizards.jpg');
+}
+
+.wizard-red {
+  background-position: -0px -0px;
+}
+
+.wizard-blue {
+  background-position: -149px -0px;
+}
+
+.wizard-green {
+  background-position: -298px -0px;
+}
+
+.wizard-yellow {
+  background-position: -447px -0px;
+}
