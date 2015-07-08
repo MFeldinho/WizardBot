@@ -11,13 +11,17 @@ app.config(['$routeProvider',
         templateUrl: 'templates/home.html',
         controller: 'HomeController'
       }).
-      when('/About', {
-        templateUrl: 'templates/about.html',
-        controller: 'AboutController'
+      when('/Game', {
+        templateUrl: 'templates/game.html',
+        controller: 'GameController'
       }).
       when('/AllCards', {
         templateUrl: 'templates/allcards.html',
         controller: 'AllCardsController'
+      }).
+      when('/About', {
+        templateUrl: 'templates/about.html',
+        controller: 'AboutController'
       }).
       otherwise({
         redirectTo: '/Home'

@@ -5,26 +5,31 @@ var wizardBotControllers = angular.module('wizardBotControllers', []);
 
 wizardBotControllers.controller('HomeController', ['$scope', '$routeParams',
   function($scope, $routeParams) {
-    $scope.message = 'Home';
   }]);
   
-wizardBotControllers.controller('AboutController', ['$scope', '$routeParams',
+wizardBotControllers.controller('GameController', ['$scope', '$routeParams',
   function($scope, $routeParams) {
-    $scope.message = 'About';
+    
+    // Initialize the game
+    var game = new WBA.Game();
+    $scope.gameState = game.getGameState();
   }]);
   
 wizardBotControllers.controller('AllCardsController', ['$scope', '$routeParams',
   function($scope, $routeParams) {
-    $scope.message = 'All Cards';
-    
-    var repo = new WBA.CardRepo(true);
-    $scope.cards = repo.getAllCards();
+    var cardRepo = new WBA.CardRepo(true);
+    $scope.cards = cardRepo.getAllCards();
+  }]);
+  
+wizardBotControllers.controller('AboutController', ['$scope', '$routeParams',
+  function($scope, $routeParams) {
   }]);
   
   
-// Repository starts here
+// Repository namespace starts here
 var WBA = WBA || {};
 
+// Card repo starts here
 WBA.CardRepo = function(isMock) {
   this.isMock = isMock;
   
@@ -47,6 +52,38 @@ WBA.CardRepo = function(isMock) {
       ];
     }
     
-    return '';
+    return null;
   };
+};
+
+// Game starts here
+WBA.Game = function() {
+  
+  WBA.Game.prototype.getGameState = function() {
+      return 'NoGame';
+  };
+  
+};
+
+// AI player starts here
+WBA.AIPlayer = function(name, isMock) {
+  this.isMock = isMock;
+  
+  //TODO: Try to initialize from browser storage
+  
+  WBA.AIPlayer.prototype.newHand = function(hand) {
+    this.hand = hand;
+    this.originalHand = hand;
+  }
+  
+  WBA.AIPlayer.prototype.guessTricks = function() {
+      //TODO
+      if(this.isMock) {
+        return 1;
+      }
+      
+      //TODO 
+      return 0;
+  };
+  
 };
