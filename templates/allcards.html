@@ -1,9 +1,9 @@
 <div class="starter-template">
 	<h1>All Cards</h1>
-	{{message}}
-	<ul class="list-group">
-	  <li class="list-group-item" ng-repeat="x in cards">
-	    {{ x.name + '(' + x.id + ')' }}
-	  </li>
-	</ul>
+	<div class="row">
+	  <div class="col-xs-6 col-md-3" ng-repeat="x in cards">
+		  <div class="{{x.imageClass}}"></div>
+		  <div class="card_subheading">{{x.name}}</div>
+	  </div>
+	</div>
 </div>
