@@ -10,20 +10,27 @@ wizardBotControllers.controller('HomeController', ['$scope', '$routeParams',
 
 // Represents the controller for all interactions with the game.
 // Handles the game state and manages the access to the browser storage.
-wizardBotControllers.controller('GameController', ['$scope', '$routeParams',
-  function($scope, $routeParams) {
+wizardBotControllers.controller('GameController', ['$scope', '$routeParams', '$route', 
+  function($scope, $routeParams, $route) {
     
     // Intialization
     var game = new WBA.Game();
+    game.load();
+    
     $scope.gameState = game.getGameState();
     $scope.playerName = game.getPlayerName();
-    
+
     // Create a new game and store the data initially in the browser storage
     $scope.createGame = function(playerName) {
       game.create(playerName);
-      $scope.gameState = game.getGameState();
-      $scope.playerName = game.getPlayerName();
+      $route.reload();
     };
+    
+    // Reset the game and clear the browser storage
+    $scope.resetGame = function() {
+      game.reset();
+      $route.reload();
+    }
   }]);
 
   
@@ -72,8 +79,9 @@ WBA.CardRepo = function(isMock) {
 // Game starts here
 WBA.Game = function() {
   this.gameState = 'NoGame';
-  this.started = '';
+  this.started;
   this.playerName = 'No Player';
+  this.currentRound;
   
   WBA.Game.prototype.getGameState = function() {
     return this.gameState;
@@ -87,14 +95,16 @@ WBA.Game = function() {
     this.gameState = 'New';
     this.started = new Date();
     this.playerName = playerName;
-    save(this.gameState, this.started, this.playerName);
+    this.currentRound = 1;
+    this.save();
   }
   
-  function save(gameState, started, playerName) {
+  WBA.Game.prototype.save = function() {
     var gameData = {}
-    gameData.state = gameState;
-    gameData.started = started;
-    gameData.playerName = playerName;
+    gameData.state = this.gameState;
+    gameData.started = this.started;
+    gameData.playerName = this.playerName;
+    gameData.currentRound = this.currentRound;
     
     if(localStorage.wizardGameData) {
       localStorage.removeItem('wizardGameData');
@@ -103,8 +113,26 @@ WBA.Game = function() {
     localStorage.wizardGameData = JSON.stringify(gameData);
   }
   
-  function load() {
+  WBA.Game.prototype.load = function() {
+    if(localStorage.wizardGameData) {
+      var gameData = JSON.parse(localStorage.wizardGameData);
+      
+      this.gameState = gameData.gameState;
+      this.started = gameData.started;
+      this.playerName = gameData.playerName;
+      this.currentRound = gameData.currentRound;
+    }
+  }
+  
+  WBA.Game.prototype.reset = function() {
+    this.gameState = 'NoGame';
+    this.started = '';
+    this.playerName = 'No Player';
+    this.currentRound = 1;
     
+    if(localStorage.wizardGameData) {
+      localStorage.removeItem('wizardGameData');
+    }
   }
   
 };
