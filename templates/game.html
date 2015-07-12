@@ -1,8 +1,15 @@
-<div class="starter-template">
+<div class="starter-template" ng-controller="GameController">
 	<h1>Game</h1>
+	Player: {{playerName}}
 	
 	<div ng-if="gameState == 'NoGame'">
 		No game in progress
+		<br /><br />
+		 <div class="form-group">
+    		<label for="playerNameLabel">Your Name</label>
+    		<input type="text" class="form-control" id="playerNameInput" placeholder="Your Name" ng-model="providedPlayerName">
+  		</div>
+		<button type="button" class="btn btn-default" ng-click="createGame(providedPlayerName);">Start new Game</button>
 	</div>
 	
 	<div ng-if="gameState != 'NoGame'">

@@ -3,23 +3,36 @@
 // The main WizardBotApp including the needed controllers starts here
 var wizardBotControllers = angular.module('wizardBotControllers', []);
 
+
 wizardBotControllers.controller('HomeController', ['$scope', '$routeParams',
   function($scope, $routeParams) {
   }]);
-  
+
+// Represents the controller for all interactions with the game.
+// Handles the game state and manages the access to the browser storage.
 wizardBotControllers.controller('GameController', ['$scope', '$routeParams',
   function($scope, $routeParams) {
     
-    // Initialize the game
+    // Intialization
     var game = new WBA.Game();
     $scope.gameState = game.getGameState();
+    $scope.playerName = game.getPlayerName();
+    
+    // Create a new game and store the data initially in the browser storage
+    $scope.createGame = function(playerName) {
+      game.create(playerName);
+      $scope.gameState = game.getGameState();
+      $scope.playerName = game.getPlayerName();
+    };
   }]);
+
   
 wizardBotControllers.controller('AllCardsController', ['$scope', '$routeParams',
   function($scope, $routeParams) {
     var cardRepo = new WBA.CardRepo(true);
     $scope.cards = cardRepo.getAllCards();
   }]);
+
   
 wizardBotControllers.controller('AboutController', ['$scope', '$routeParams',
   function($scope, $routeParams) {
@@ -58,10 +71,41 @@ WBA.CardRepo = function(isMock) {
 
 // Game starts here
 WBA.Game = function() {
+  this.gameState = 'NoGame';
+  this.started = '';
+  this.playerName = 'No Player';
   
   WBA.Game.prototype.getGameState = function() {
-      return 'NoGame';
+    return this.gameState;
   };
+  
+  WBA.Game.prototype.getPlayerName = function() {
+    return this.playerName;
+  }
+  
+  WBA.Game.prototype.create = function(playerName) {
+    this.gameState = 'New';
+    this.started = new Date();
+    this.playerName = playerName;
+    save(this.gameState, this.started, this.playerName);
+  }
+  
+  function save(gameState, started, playerName) {
+    var gameData = {}
+    gameData.state = gameState;
+    gameData.started = started;
+    gameData.playerName = playerName;
+    
+    if(localStorage.wizardGameData) {
+      localStorage.removeItem('wizardGameData');
+    }
+    
+    localStorage.wizardGameData = JSON.stringify(gameData);
+  }
+  
+  function load() {
+    
+  }
   
 };
 
