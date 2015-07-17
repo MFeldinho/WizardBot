@@ -1,21 +1,24 @@
 <div class="starter-template" ng-controller="GameController">
 	<h1>Game</h1>
-	Player: {{playerName}}
-	
-	<div ng-if="gameState == 'NoGame'">
-		No game in progress
-		<br /><br />
-		 <div class="form-group">
-    		<label for="playerNameLabel">Your Name</label>
-    		<input type="text" class="form-control" id="playerNameInput" placeholder="Your Name" ng-model="providedPlayerName">
-  		</div>
-		<button type="button" class="btn btn-default" ng-click="createGame(providedPlayerName);">Start new Game</button>
-	</div>
-	
-	<div ng-if="gameState != 'NoGame'">
-		Game started at {{started}}<br />
-		Round: {{currentRound}}
-		<br /><br />
-		<button type="button" class="btn btn-default" ng-click="resetGame();">Reset Game</button>
+	<div class="game-content">
+		<div class="panel panel-default" ng-if="gameState == 'NoGame'">
+			<div class="panel-heading">WizardBot: No game in progress</div>
+			<div class="panel-body">
+				<div class="form-group">
+	    			<label for="playerNameLabel">Your Name</label>
+	    			<input type="text" class="form-control" id="playerNameInput" placeholder="Your Name" ng-model="providedPlayerName">
+	  			</div>
+				<button type="button" class="btn btn-block btn-primary" ng-click="createGame(providedPlayerName);">Start new Game</button>
+			</div>
+			<div class="panel-footer">Player: {{playerName}}</div>
+		</div>
+		
+		<div class="panel panel-default" ng-if="gameState != 'NoGame'">
+			<div class="panel-heading">WizardBot: Game running</div>
+			<div class="panel-body">
+				<button type="button" class="btn btn-block btn-danger" ng-click="resetGame();">Reset Game</button>
+			</div>
+			<div class="panel-footer">Player: {{playerName}} | Game started at {{started}} | Current Round: {{currentRound}}</div>
+		</div>
 	</div>
 </div>

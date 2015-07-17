@@ -6,6 +6,10 @@ body {
   padding: 40px 15px;
 }
 
+.game-content {
+  width: 640px;
+}
+
 /* Card Classes */
 
 .card_subheading {
